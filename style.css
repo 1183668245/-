@@ -1,0 +1,1838 @@
+:root {
+    --primary-color: #FFD700; /* Gold */
+    --primary-glow: rgba(255, 215, 0, 0.5);
+    --secondary-color: #9D50BB; /* Neon Purple */
+    --secondary-glow: rgba(157, 80, 187, 0.5);
+    --text-color: #E0E0E0;
+    --bg-color: #0F0C29; /* Deep space dark */
+    --bg-gradient: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    --card-bg: rgba(255, 255, 255, 0.05); /* Glassmorphism */
+    --card-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('Materials/bk-png.webp') no-repeat center center fixed;
+    background-size: cover;
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+html {
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navbar */
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(20, 10, 50, 0.8); /* Dark purple semi-transparent background */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    padding: 0;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px; /* Vertical padding + default container side padding */
+    position: relative;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-right: auto;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--primary-glow);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 30px;
+    margin-right: 30px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #FFD700; /* Gold color */
+    font-weight: 900; /* Extra bold */
+    transition: all 0.3s ease;
+    font-size: 1.5rem; /* Larger font size */
+    opacity: 1;
+    text-shadow: 2px 2px 0px #3E1F78, -1px -1px 0 #3E1F78, 1px -1px 0 #3E1F78, -1px 1px 0 #3E1F78, 1px 1px 0 #3E1F78; /* Strong purple outline/shadow */
+    letter-spacing: 1px;
+    margin-left: 20px;
+}
+
+.nav-link:hover {
+    color: #FFF;
+    text-shadow: 0 0 10px #FFD700, 2px 2px 0px #3E1F78;
+    transform: scale(1.05);
+}
+
+.logo-img {
+    height: 50px;
+    width: auto;
+    filter: drop-shadow(0 0 5px var(--primary-glow));
+}
+
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.btn-connect {
+    background: linear-gradient(180deg, #FFEB3B 0%, #FFC107 100%); /* Bright Yellow/Gold Gradient */
+    color: #FFF; /* White Text */
+    text-shadow: 1px 1px 0 #3E1F78, -1px -1px 0 #3E1F78, 1px -1px 0 #3E1F78, -1px 1px 0 #3E1F78; /* Purple outline for readability */
+    box-shadow: 0 4px 0 #B7791F, 0 5px 10px rgba(0,0,0,0.3); /* 3D border effect */
+    border: 2px solid #FFF; /* White border */
+    font-weight: 900;
+    font-size: 1.2rem;
+    padding: 10px 30px;
+    border-radius: 50px; /* Pill shape */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-connect:hover {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #B7791F, 0 3px 5px rgba(0,0,0,0.3);
+    filter: brightness(1.1);
+}
+
+/* Hero */
+.hero {
+    padding: 0;
+    background: transparent;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    border-radius: 0;
+    padding: 200px 60px 80px 60px; /* Significantly increased top padding to move content down */
+    box-shadow: none;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content {
+    flex: 1;
+    text-align: left;
+    max-width: 600px;
+}
+
+.main-title-img {
+    max-width: 50%; /* Reduced size */
+    height: auto;
+    margin-bottom: 20px;
+    display: block;
+    filter: none;
+}
+
+.sub-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #fff;
+    font-weight: 600;
+}
+
+.sub-title-en {
+    font-size: 1rem;
+    color: #fff; /* White text */
+    margin-bottom: 40px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 20px;
+}
+
+.hero-cta .btn {
+    padding: 15px 35px;
+    font-size: 1.1rem;
+}
+
+.balance-display {
+    margin-top: 25px;
+    font-size: 1.1rem;
+    color: #E0E0E0;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 12px 25px;
+    border-radius: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.balance-label {
+    font-weight: 500;
+}
+
+.balance-value {
+    color: #FFD700; /* Gold */
+    font-weight: 900;
+    font-size: 1.4rem;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    font-family: monospace; /* For numbers */
+}
+
+.balance-unit {
+    color: #9D50BB; /* Purple */
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin-top: 4px;
+}
+
+.qualification-msg {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #FFD700; /* Gold Text */
+    font-weight: 900;
+    background: linear-gradient(90deg, rgba(157, 80, 187, 0.2) 0%, rgba(255, 215, 0, 0.1) 100%); /* Purple to Gold subtle gradient */
+    padding: 12px 25px;
+    border-radius: 50px; /* Pill shape */
+    border: 1px solid rgba(255, 215, 0, 0.5); /* Gold border */
+    animation: glowPulse 2s infinite ease-in-out;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+    display: inline-block;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+    letter-spacing: 1px;
+    backdrop-filter: blur(5px);
+}
+
+@keyframes glowPulse {
+    0% {
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+        border-color: rgba(255, 215, 0, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.5), inset 0 0 10px rgba(255, 215, 0, 0.1);
+        border-color: rgba(255, 215, 0, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+        border-color: rgba(255, 215, 0, 0.3);
+    }
+}
+
+.hero-visual-3d {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+/* Style for My Tickets button inside hero visual */
+.hero-visual-3d #myTicketsBtn {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(50%); /* Center and push down slightly */
+    z-index: 10;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    white-space: nowrap;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    /* Ensure it stands out */
+    background-size: 100% 100%;
+}
+
+/* Enhanced Golden Shining Effect */
+.gold-guarantee {
+    color: #FFD700;
+    font-weight: 900;
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    background: rgba(255, 215, 0, 0.1);
+    animation: goldShine 2s infinite ease-in-out;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+    margin-top: 10px;
+}
+
+@keyframes goldShine {
+    0% {
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+        border-color: rgba(255, 215, 0, 0.3);
+        text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(255, 215, 0, 0.6), inset 0 0 15px rgba(255, 215, 0, 0.2);
+        border-color: rgba(255, 215, 0, 0.9);
+        text-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 0 25px rgba(255, 215, 0, 0.6);
+        transform: scale(1.02);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+        border-color: rgba(255, 215, 0, 0.3);
+        text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+    }
+}
+
+.hero-visual-img {
+    width: 100%;
+    max-width: 650px; /* Slightly larger than before to show detail */
+    height: auto;
+    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+    /* animation: float 6s ease-in-out infinite; Removed per user request */
+    transform-origin: center center;
+    position: relative;
+    z-index: 1;
+}
+
+/* Sparkle Effect */
+.sparkle {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: radial-gradient(circle, #FFF59D 0%, rgba(255, 215, 0, 0) 70%);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    animation: sparkle-anim 2s linear infinite;
+}
+
+@keyframes sparkle-anim {
+    0% { transform: scale(0) rotate(0deg); opacity: 0; }
+    50% { transform: scale(1) rotate(180deg); opacity: 1; }
+    100% { transform: scale(0) rotate(360deg); opacity: 0; }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+.btn-primary {
+    background: url('Materials/刮金豆 界面/0/资源 63.png') no-repeat center center;
+    background-size: 100% 100%;
+    color: #3E1F78; /* Deep purple text */
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+    border: none;
+    box-shadow: none;
+    padding: 15px 40px;
+    font-weight: 900;
+}
+
+.btn-primary:hover {
+    box-shadow: none;
+    transform: scale(1.05);
+}
+
+.btn-secondary, .btn-cancel {
+    background: url('Materials/刮金豆 界面/0/资源 62.png') no-repeat center center;
+    background-size: 100% 100%;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    border: none;
+    backdrop-filter: none;
+    padding: 15px 40px;
+    font-weight: 900;
+}
+
+.btn-secondary:hover, .btn-cancel:hover {
+    background: url('Materials/刮金豆 界面/0/资源 62.png') no-repeat center center;
+    background-size: 100% 100%;
+    border: none;
+    transform: scale(1.05);
+}
+
+/* Scratch Game Modal Styles */
+.scratch-modal-content {
+    background: radial-gradient(circle at center, #2c0e58 0%, #0F0C29 100%);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    color: #fff;
+    box-shadow: 0 0 50px rgba(157, 80, 187, 0.3);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.scratch-desc-panel {
+    flex: 1; 
+    padding: 30px; 
+    background: rgba(20, 10, 50, 0.6); 
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    color: #333; /* Darker text for light backgrounds (like the new colorful bg) */
+    border-radius: 20px 0 0 20px; 
+    overflow-y: auto;
+    font-weight: 600; /* Bolder text */
+}
+
+.scratch-desc-panel h2 {
+    color: #FFD700 !important; 
+    -webkit-text-stroke: 1px #8E24AA !important; /* Add stroke back for contrast against busy bg */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    font-size: 2rem; 
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+}
+
+/* Optimize list styles in description */
+.scratch-desc-panel ul, .scratch-desc-panel ol {
+    padding-left: 20px;
+}
+
+.scratch-desc-panel li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5); /* Light shadow for readability */
+}
+
+.scratch-desc-panel strong {
+    color: #6A1B9A; /* Deep purple for emphasis */
+    text-shadow: none;
+}
+
+.scratch-desc-panel hr {
+    border-top-color: rgba(0,0,0,0.2) !important;
+}
+
+.scratch-game-panel {
+    flex: 0 0 400px; 
+    padding: 30px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    background: transparent; /* Let parent gradient show */
+    border-radius: 0 20px 20px 0;
+}
+
+.scratch-status-bar {
+    display: flex;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 12px 20px;
+    border-radius: 50px; /* Pill shape */
+    margin-bottom: 25px;
+    font-weight: bold;
+    width: 100%;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.status-item span:last-child {
+    color: #FFD700;
+}
+
+/* Gold Bean Showcase */
+.gold-bean-showcase {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.gold-bean-gallery {
+    display: flex;
+    gap: 30px;
+    padding: 30px;
+    justify-content: center;
+    flex-wrap: wrap; 
+}
+
+.gold-bean-item {
+    flex: 0 0 auto;
+    width: 280px;
+    height: 280px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.gold-bean-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.gold-bean-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: #FFD700;
+    box-shadow: 0 15px 30px rgba(255, 215, 0, 0.3);
+    z-index: 10;
+}
+
+.gold-bean-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .gold-bean-gallery {
+        justify-content: flex-start; /* Start align for scrolling */
+        flex-wrap: nowrap; /* Horizontal scroll on mobile */
+        overflow-x: auto;
+        padding: 20px;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    
+    .gold-bean-gallery::-webkit-scrollbar {
+        display: none;
+    }
+
+    .gold-bean-item {
+        width: 240px;
+        height: 240px;
+    }
+}
+
+.close-scratch-modal {
+    color: rgba(255,255,255,0.7);
+    background: rgba(0,0,0,0.3);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.close-scratch-modal:hover {
+    color: #fff;
+    background: rgba(255, 0, 0, 0.6);
+    transform: rotate(90deg);
+}
+
+.scratch-layout {
+    display: flex; 
+    min-height: 500px;
+    background: url('Materials/bk-png.webp') no-repeat center center; /* Optional texture overlay */
+    background-size: cover;
+    background-blend-mode: overlay;
+}
+
+.scratch-area-container {
+    position: relative;
+    width: 320px; /* 4 * 80px */
+    height: 320px;
+    margin: 0 auto 20px;
+    background: #333;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    border: 2px solid #FFD700;
+    padding: 0; /* Ensure no padding */
+}
+
+.scratch-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 80px); /* Fixed width columns */
+    grid-template-rows: repeat(4, 80px);    /* Fixed height rows */
+    width: 320px;
+    height: 320px;
+    gap: 0; /* Ensure no gaps */
+}
+
+.scratch-grid img {
+    width: 60px; /* Further reduced from 70px */
+    height: 60px; /* Further reduced from 70px */
+    margin: 10px; /* Increased margin for more spacing */
+    object-fit: contain;
+    border: none;
+    display: block;
+}
+
+#scratchCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    cursor: crosshair;
+    transition: opacity 0.5s ease;
+}
+
+.scratch-overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5; /* Below canvas, above grid (initially hidden by canvas) */
+    color: rgba(255,255,255,0.5);
+    pointer-events: none;
+    display: none; /* Show only when empty */
+}
+
+.scratch-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.scratch-result-msg {
+    text-align: center;
+    min-height: 24px;
+    font-size: 1.1rem;
+    color: #FFD700;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+.btn-small {
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+.detailed-process .section-title {
+    font-size: 3.5rem;
+    color: #fff;
+    font-weight: 900;
+    margin-bottom: 60px;
+    font-family: "Arial Rounded MT Bold", "Arial Black", "Chalkboard SE", sans-serif;
+    /* Soft 3D Bubble Text */
+    text-shadow: 
+        0 4px 0 #7B1FA2, /* Deep purple base */
+        0 8px 20px rgba(123, 31, 162, 0.4); /* Soft glow */
+    -webkit-text-stroke: 0; /* No harsh stroke */
+    letter-spacing: 2px;
+    text-align: center; /* Center title */
+}
+
+.detailed-process .container {
+    border-radius: 0;
+    padding: 60px 20px;
+    box-shadow: none;
+    margin-top: 0;
+    position: relative;
+    z-index: 0;
+    text-align: center; /* Ensure container centers content if needed */
+}
+
+.process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Airy spacing */
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: left; /* Reset text align for steps */
+}
+
+.process-step {
+    display: flex;
+    align-items: center;
+    /* Claymorphism Base: #9f5ec0 */
+    background-color: #9f5ec0;
+    background-image: linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.05) 100%);
+    /* The "Soft Clay" Effect */
+    box-shadow: 
+        inset 4px 4px 8px rgba(255,255,255,0.35), /* Soft Top-Left Highlight */
+        inset -4px -4px 10px rgba(0,0,0,0.1), /* Soft Bottom-Right Shadow */
+        0 15px 30px -5px rgba(106, 27, 154, 0.3); /* Floating Drop Shadow */
+    border-radius: 35px; /* Super rounded */
+    padding: 25px 40px;
+    border: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    z-index: 1;
+}
+
+.process-step::after {
+    display: none;
+}
+
+.process-step:hover {
+    /* Subtle Light Shift Only - No Movement */
+    box-shadow: 
+        inset 4px 4px 8px rgba(255,255,255,0.45), /* Slightly brighter highlight */
+        inset -4px -4px 10px rgba(0,0,0,0.1),
+        0 15px 30px -5px rgba(106, 27, 154, 0.3); /* Keep same shadow */
+}
+
+.step-number {
+    /* "Vitamin C" Pill Style */
+    font-size: 1.4rem;
+    font-family: "Arial Rounded MT Bold", "Arial Black", sans-serif;
+    font-weight: 800;
+    color: #E65100; /* Deep Orange Text */
+    background: #FFD600; /* Vibrant Yellow */
+    margin-right: 35px;
+    min-width: 110px;
+    text-align: center;
+    padding: 12px 0;
+    border-radius: 20px; /* Squircle */
+    border: none;
+    /* Soft Pill Volume */
+    box-shadow: 
+        inset 3px 3px 6px rgba(255,255,255,0.6),
+        inset -2px -2px 4px rgba(230, 81, 0, 0.1),
+        0 8px 15px rgba(230, 81, 0, 0.15);
+    -webkit-text-stroke: 0;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+    z-index: 1;
+    font-style: normal;
+    text-transform: lowercase;
+    flex-shrink: 0;
+}
+
+.step-content {
+    text-align: left;
+    z-index: 1;
+    flex: 1;
+}
+
+.step-content h3 {
+    font-size: 1.6rem;
+    margin: 0 0 8px 0;
+    color: #fff;
+    font-weight: 800;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    letter-spacing: 0.5px;
+
+}
+
+.step-content p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9); /* High contrast white-ish */
+    margin: 0;
+    font-weight: 400;
+    font-family: "Microsoft YaHei", sans-serif; /* Clean font */
+}
+
+.on-chain-note {
+    margin-top: 30px;
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+    text-align: center; /* Center note */
+}
+
+/* Cards Section */
+.cards-section {
+    padding: 0;
+    text-align: center;
+}
+
+.cards-section .container {
+    border-radius: 0;
+    padding: 60px 20px;
+    box-shadow: none;
+    margin-top: 0;
+    position: relative;
+    z-index: 0;
+    text-align: center; /* Center the image */
+}
+
+/* New Section Title Image */
+.section-title-img {
+    max-width: 90%;
+    width: 600px; /* Optimal size */
+    height: auto;
+    margin-bottom: 50px;
+    display: inline-block;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2)); /* Slight shadow for pop */
+}
+
+.cards-section h2 {
+    display: none; /* Hide old h2 just in case */
+}
+
+.prizes-section h2, .gold-bean-showcase h2 {
+    display: block; /* Show title */
+    font-size: 3.5rem;
+    color: #fff;
+    font-weight: 900;
+    margin-bottom: 60px;
+    font-family: "Arial Rounded MT Bold", "Arial Black", "Chalkboard SE", sans-serif;
+    text-shadow: 
+        0 4px 0 #7B1FA2, /* Deep purple base */
+        0 8px 20px rgba(123, 31, 162, 0.4); /* Soft glow */
+    text-align: center;
+}
+
+.cards-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.card-item {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    width: 320px;
+    transition: all 0.4s ease;
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+    pointer-events: none;
+}
+
+.card-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    border-color: rgba(255,255,255,0.3);
+}
+
+.card-image-placeholder {
+    width: 100%;
+    height: 200px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.3);
+    border: 1px dashed rgba(255,255,255,0.2);
+}
+
+.card-item h3 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+    font-family: "Arial Rounded MT Bold", "Arial Black", sans-serif;
+    font-weight: 900;
+    /* Cartoon Yellow Gradient Text */
+    background: linear-gradient(180deg, #FFF176 0%, #FFB300 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent; /* Fallback */
+    /* Thick Dark Stroke */
+    -webkit-text-stroke: 6px #4A148C; /* Dark Purple Stroke */
+    paint-order: stroke fill;
+    text-shadow: 0 4px 0 rgba(0,0,0,0.2);
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Fallback for stroke issues with gradients: Use a pseudo-element if needed, 
+   but for now, standard text-stroke is supported in most modern browsers. 
+   To make the stroke visible BEHIND the gradient text, we might need a specific trick 
+   if background-clip cuts it off. 
+   Adjusting to standard color with stroke for better compatibility if needed, 
+   but let's try the gradient look first. 
+   Actually, text-stroke with background-clip:text often cuts the stroke inside.
+   Let's use a solid color with text-shadow trick for stroke to be safe and match the reference better.
+*/
+.card-item h3 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+    font-family: "Arial Rounded MT Bold", "Arial Black", sans-serif;
+    font-weight: 900;
+    /* Solid High-Contrast Color */
+    color: #FFD700; /* Bright Gold */
+    /* Clean Dark Stroke */
+    -webkit-text-stroke: 2px #4A148C; /* Dark Purple Stroke */
+    /* Subtle Shadow for Depth */
+    text-shadow: 0 4px 0 #4A148C;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 2;
+    /* Reset background clips that caused invisibility */
+    background: none;
+    -webkit-text-fill-color: initial;
+    background-clip: border-box;
+}
+
+.card-item p {
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+/* Specific Styles for Colorful Scratch Card */
+.card-item.colorful {
+    background: url('Materials/刮金豆 界面/2/资源 32-转换自-png.webp') no-repeat center center;
+    background-size: contain; /* Keep original aspect ratio, no stretching */
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    /* Remove fixed width/height constraints */
+    width: auto; 
+    min-width: 320px;
+    max-width: 380px;
+    /* Use aspect-ratio to match the image shape (approx based on image) */
+    aspect-ratio: 340/430; 
+    padding: 0 30px 40px 30px; /* Adjust padding */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Align content to bottom */
+    align-items: center;
+}
+
+.card-item.colorful::before {
+    display: none; /* Remove gloss overlay */
+}
+
+.card-item.colorful .card-image-placeholder {
+    display: none; /* Hide placeholder, background has the image */
+}
+
+.card-item.colorful:hover {
+    transform: none;
+    box-shadow: none;
+    border: none;
+}
+
+/* Specific Styles for Golden Scratch Card */
+.card-item.golden {
+    background: url('Materials/刮金豆 界面/2/资源 30-转换自-png.webp') no-repeat center center;
+    background-size: contain;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    width: auto;
+    min-width: 320px;
+    max-width: 380px;
+    aspect-ratio: 340/430; /* Same aspect ratio assumption */
+    padding: 0 30px 40px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.card-item.golden::before {
+    display: none;
+}
+
+.card-item.golden .card-image-placeholder {
+    display: none;
+}
+
+.card-item.golden:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.prize-tag {
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin-top: 5px;
+    color: #fff;
+    font-family: "Arial Rounded MT Bold", "Arial Black", sans-serif;
+    border: 2px solid rgba(255,255,255,0.8);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    text-shadow: 0 2px 2px rgba(0,0,0,0.3);
+    /* Default Purple Style (Colorful Card) */
+    background: linear-gradient(180deg, #E040FB 0%, #AA00FF 100%);
+}
+
+.prize-tag.gold {
+    /* Gold Style */
+    background: linear-gradient(180deg, #FFF176 0%, #FFB300 100%);
+    color: #fff; /* Or dark brown if preferred, reference looks white text on buttons too? Ref has text */
+    /* Wait, ref has "1g 金豆" with white text on yellow button? 
+       Actually ref image "1g 金豆" is white text with brown stroke on yellow button. */
+    border: 2px solid #8D6E63;
+    color: #fff;
+    -webkit-text-stroke: 1px #5D4037;
+    text-shadow: 0 2px 0 #5D4037;
+}
+
+/* Prizes Section */
+.prizes-section {
+    background: transparent;
+    padding: 80px 0;
+    text-align: center;
+    position: relative;
+}
+
+.prizes-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+/* High-End Prize Cards Redesign */
+.prize-card {
+    border-radius: 30px;
+    padding: 40px 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: 380px;
+    /* Common Glass Base */
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    transition: transform 0.3s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Left: Milky White Jade Style */
+.prize-card.colorful-prizes {
+    /* Subtle purple tint in white glass */
+    background: linear-gradient(160deg, rgba(255,255,255,0.9) 0%, rgba(243, 229, 245, 0.85) 60%, rgba(225, 190, 231, 0.9) 100%);
+    /* Soft glowing rim + Depth shadow */
+    box-shadow: 
+        inset 0 0 0 1px rgba(255,255,255,0.8), /* Sharp inner rim */
+        inset 0 0 20px rgba(255,255,255,1), /* Inner glow */
+        0 20px 50px rgba(106, 27, 154, 0.15), /* Soft purple drop shadow */
+        0 0 0 1px rgba(255,255,255,0.4); /* Outer definition */
+    border: none;
+}
+
+/* Right: Deep Amethyst Crystal Style */
+.prize-card.golden-prizes {
+    /* Deep glossy purple */
+    background: linear-gradient(160deg, rgba(142, 36, 170, 0.9) 0%, rgba(74, 20, 140, 0.95) 100%);
+    /* Gold Rim + Inner Depth */
+    box-shadow: 
+        inset 0 0 0 1px rgba(255, 215, 0, 0.6), /* Sharp Gold Rim */
+        inset 0 0 15px rgba(123, 31, 162, 0.8), /* Inner purple depth */
+        0 20px 50px rgba(0,0,0,0.3), /* Deep drop shadow */
+        0 0 0 1px rgba(255, 215, 0, 0.2); /* Outer faint gold ring */
+    border: none;
+}
+
+.prize-header {
+    text-align: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    position: relative;
+}
+
+/* Elegant Separator Line */
+.prize-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 80%;
+    height: 1px;
+}
+.colorful-prizes .prize-header::after {
+    background: linear-gradient(90deg, transparent, rgba(106, 27, 154, 0.3), transparent);
+}
+.golden-prizes .prize-header::after {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+}
+
+.prize-header h3 {
+    font-size: 2.2rem;
+    margin-bottom: 5px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+/* Typography Refinement */
+.colorful-prizes h3 { 
+    color: #fff; 
+    text-shadow: 0 2px 4px rgba(106, 27, 154, 0.4); 
+    /* To match reference: White text on light background needs shadow or stroke */
+    -webkit-text-stroke: 4px transparent; 
+    /* Actually reference has white text with purple outline? No, looks like solid white on light purple. 
+       Let's stick to clean white with purple glow for readability on light bg. */
+    color: #FFFFFF;
+    text-shadow: 0 0 5px #BA68C8, 0 1px 2px rgba(0,0,0,0.2);
+}
+.golden-prizes h3 { 
+    color: #fff; 
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3); 
+}
+
+.prize-subtitle {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+.colorful-prizes .prize-subtitle { color: #7B1FA2; opacity: 0.8; }
+.golden-prizes .prize-subtitle { color: rgba(255,255,255,0.7); }
+
+.prize-desc {
+    font-size: 1.3rem;
+    font-weight: 900;
+    margin-top: 5px;
+    letter-spacing: 0.5px;
+}
+.colorful-prizes .prize-desc { color: #F57C00; /* Vibrant Orange */ text-shadow: 0 1px 0 rgba(255,255,255,0.5); }
+.golden-prizes .prize-desc { color: #FFEB3B; /* Bright Yellow */ text-shadow: 0 0 10px rgba(255, 235, 59, 0.4); }
+
+/* Prize List - Clean & Airy */
+.prize-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.prize-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 10px;
+    border-bottom: 1px solid;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+/* Fading border lines */
+.colorful-prizes .prize-list li { 
+    color: #6A1B9A; 
+    border-image: linear-gradient(90deg, transparent, rgba(106, 27, 154, 0.1), transparent) 1;
+}
+.golden-prizes .prize-list li { 
+    color: #fff; 
+    border-image: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent) 1;
+}
+
+.prize-list li:last-child { border-bottom: none; }
+
+/* Highlight Top Prizes - Glow Effect */
+.colorful-prizes li:first-child .prize-value { 
+    color: #EF6C00; 
+    font-size: 1.3rem; 
+    font-weight: 900;
+}
+.golden-prizes li:first-child .prize-value { 
+    color: #FFEB3B; 
+    font-size: 1.3rem; 
+    font-weight: 900;
+    text-shadow: 0 0 8px rgba(255, 235, 59, 0.5);
+}
+
+.prize-footer {
+    margin-top: 30px;
+    font-size: 0.8rem;
+    opacity: 0.6;
+    letter-spacing: 1px;
+}
+.colorful-prizes .prize-footer { color: #4A148C; }
+.golden-prizes .prize-footer { color: #E1BEE7; }
+
+
+
+.prize-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.prize-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px dashed rgba(255,255,255,0.1);
+    color: #e0e0e0;
+}
+
+.prize-list li:last-child {
+    border-bottom: none;
+}
+
+.prize-rank {
+    font-weight: bold;
+}
+
+.prize-value {
+    color: #fff;
+    font-family: monospace;
+    font-size: 1.1rem;
+}
+
+.golden-prizes {
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
+    background: linear-gradient(135deg, rgba(255,215,0,0.05) 0%, rgba(0,0,0,0) 100%);
+}
+
+.golden-prizes .prize-header h3 {
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--primary-glow);
+}
+
+.grand-prize {
+    background: linear-gradient(90deg, rgba(255,215,0,0.2) 0%, transparent 100%);
+    padding: 10px !important;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(255,215,0,0.3) !important;
+}
+
+.grand-prize .prize-value {
+    color: var(--primary-color);
+    font-weight: bold;
+    text-shadow: 0 0 5px var(--primary-glow);
+}
+
+.prize-footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #888;
+    font-style: italic;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Trust Section */
+.trust-section {
+    padding: 40px 0;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.trust-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ccc;
+    font-size: 0.95rem;
+}
+
+.trust-icon {
+    font-size: 1.2rem;
+}
+
+.trust-disclaimer {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 20px;
+}
+
+/* Fixed Floating Mascot */
+.mascot-container {
+    position: fixed;
+    bottom: 0; /* Flush with bottom */
+    right: 90px;
+    z-index: 9999;
+    line-height: 0; /* Remove potential inline-block gap */
+}
+
+.fixed-float-img {
+    width: 360px;
+    height: auto;
+    cursor: pointer;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+    transform: scaleX(-1); /* Flip horizontally */
+    display: block;
+}
+
+.fixed-float-img:hover {
+    transform: scaleX(-1); /* Keep flipped, no animation */
+}
+
+/* Mascot Speech Bubble */
+.mascot-dialog {
+    position: absolute;
+    bottom: 100%; /* Above the mascot */
+    right: 20%; /* Align with mascot's head approx */
+    background: #fff;
+    color: #333;
+    padding: 15px 20px;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    margin-bottom: 20px; /* Space between bubble and mascot */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(0.9);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    width: 200px;
+    text-align: center;
+    pointer-events: none;
+    line-height: 1.5;
+}
+
+.mascot-dialog::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 30px;
+    border-width: 10px 10px 0;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent;
+}
+
+.mascot-dialog.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+/* Show dialog on hover */
+.mascot-container:hover .mascot-dialog {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+/* Text Animation */
+.mascot-text-char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(5px);
+    animation: textFadeIn 0.3s forwards;
+}
+
+@keyframes textFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Wallet Modal */
+.wallet-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+}
+
+.wallet-modal.show {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background: linear-gradient(145deg, #2E1A47 0%, #1A0F2E 100%);
+    margin: auto;
+    padding: 30px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    width: 90%;
+    max-width: 400px;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    position: relative;
+    color: #fff;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+}
+
+.close-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-desc {
+    color: #bbb;
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+}
+
+.wallet-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.wallet-option {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.wallet-option:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 215, 0, 0.5);
+    transform: translateX(5px);
+}
+
+.wallet-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-right: 15px;
+    color: #fff;
+    font-weight: bold;
+    overflow: hidden; /* Ensure SVG doesn't overflow */
+}
+
+.wallet-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+.wallet-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.wallet-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.wallet-name {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #fff;
+}
+
+.wallet-status {
+    font-size: 0.75rem;
+    color: #4CAF50; /* Green for status */
+    margin-top: 2px;
+}
+
+.modal-footer {
+    margin-top: 25px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+}
+
+.modal-footer p {
+    color: #FF5252; /* Warning Red */
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin: 0;
+    background: rgba(255, 82, 82, 0.1);
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Site Footer */
+.site-footer {
+    background: linear-gradient(180deg, rgba(15, 12, 41, 0.9) 0%, rgba(36, 36, 62, 0.95) 100%);
+    color: #ccc;
+    padding: 60px 0 30px;
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.9rem;
+}
+
+.site-footer .footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.site-footer .footer-section {
+    flex: 1;
+    min-width: 250px;
+}
+
+.site-footer h4 {
+    color: #FFD700;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 800;
+}
+
+.site-footer p {
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.site-footer .disclaimer {
+    flex: 2; /* Give more space to text */
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: #fff;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.social-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.social-icon:hover {
+    background: #FFD700;
+    color: #3E1F78;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    /* Navbar */
+    .navbar-container {
+        padding: 10px 15px;
+    }
+    
+    .nav-menu {
+        display: none; /* Hide menu on mobile for now, or add a hamburger */
+    }
+    
+    .btn-connect {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+
+    .logo-img {
+        height: 35px;
+    }
+
+    /* Hero */
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+        padding: 100px 20px 40px 20px;
+    }
+    
+    .hero-content {
+        text-align: center;
+        padding: 0;
+        max-width: 100%;
+    }
+    
+    .main-title-img {
+        max-width: 60%; /* Smaller on mobile */
+        margin: 0 auto 20px auto;
+    }
+    
+    .sub-title {
+        font-size: 1.2rem;
+    }
+    
+    .sub-title-en {
+        font-size: 0.9rem;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        width: 100%;
+    }
+    
+    .hero-cta .btn {
+        width: 80%; /* Not full width */
+        max-width: 240px;
+        height: 65px; /* Fixed height for shape */
+        padding: 0; /* Remove padding, use flex to center text */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-size: contain !important; /* Prevent stretching */
+        background-repeat: no-repeat !important;
+        background-position: center !important;
+        font-size: 1.1rem; /* Adjust text size */
+        margin: 0 auto; /* Center buttons */
+    }
+
+    /* Sections */
+    .detailed-process .container, 
+    .cards-section .container {
+        padding: 40px 20px;
+        border-radius: 0; /* Keep square */
+    }
+
+    /* Cards & Prizes */
+    .cards-grid, 
+    .prizes-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+    
+    .card-item, 
+    .prize-card {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto; /* Ensure centered in flex container */
+        display: flex; /* Flex layout */
+        flex-direction: column;
+        align-items: center; /* Center children horizontally */
+        text-align: center; /* Center text */
+    }
+
+    /* Trust */
+    .trust-grid {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* Detailed Process Mobile Overrides */
+    .detailed-process .section-title {
+        font-size: 2.2rem;
+        -webkit-text-stroke: 3px #6A1B9A; /* Reduced stroke width for readability */
+        margin-bottom: 30px;
+        paint-order: stroke fill; /* Ensure fill is drawn on top of stroke */
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .process-step {
+        padding: 15px 20px;
+        border-radius: 16px;
+    }
+
+    .step-number {
+        min-width: 80px;
+        font-size: 1.2rem;
+        margin-right: 15px;
+        padding: 8px 0;
+        /* Improved readability */
+        color: #BF360C; /* Darker orange for better contrast */
+        -webkit-text-stroke: 0; /* Remove thick stroke that blurs text */
+        text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+    }
+    
+    .step-content h3 {
+        font-size: 1.3rem;
+    }
+
+    /* Hide Mascot on Mobile */
+    .mascot-container {
+        display: none;
+    }
+
+    /* Mobile Responsiveness for Scratch Modal */
+    .scratch-modal-content {
+        width: 95% !important;
+        margin: 10px auto;
+        max-height: 90vh; /* Prevent overflow */
+        overflow-y: auto; /* Allow scrolling entire modal if needed */
+    }
+
+    .scratch-layout {
+        flex-direction: column;
+    }
+
+    .scratch-desc-panel {
+        border-radius: 0 0 20px 20px !important;
+        max-height: 300px; /* Limit height of rules on mobile */
+    }
+
+    .scratch-game-panel {
+        flex: 0 0 auto !important;
+        border-radius: 20px 20px 0 0 !important;
+        padding: 20px !important;
+    }
+
+    /* Scale down the scratch area if screen is too small */
+    .scratch-area-container {
+        /* 320px might fit on most phones (iPhone SE is 375px wide), 
+           but just in case, we can ensure it doesn't overflow */
+        max-width: 100%;
+        /* If screen is < 360px, scale it */
+    }
+
+    /* Fix Grid Cells on Mobile if container shrinks? 
+       Actually 320px fits almost all modern phones. 
+       iPhone 5/SE (1st gen) is 320px. 
+       So strict 320px is barely safe. */
+    
+    .modal-header {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+    }
+    
+    .close-modal {
+        background: rgba(0,0,0,0.5); /* Make visible against any bg */
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+    }
+}
+
+/* Loading Overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85); /* Deep dark background */
+    z-index: 20000; /* Higher than other modals */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    flex-direction: column;
+}
+
+.loading-overlay.show {
+    display: flex;
+}
+
+.loading-content {
+    text-align: center;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 215, 0, 0.3);
+    border-radius: 50%;
+    border-top-color: #FFD700; /* Gold */
+    animation: spin 1s ease-in-out infinite;
+    margin-bottom: 20px;
+}
+
+#loadingText {
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #FFD700;
+}
