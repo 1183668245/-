@@ -253,16 +253,19 @@ app.post('/api/play', (req, res) => {
     if (user.consecutiveLosses > 10) user.consecutiveLosses = 10; 
 
     // 3. Fill Grid
-    // Get No Prize icons
-    const dirPath = path.join(__dirname, '../', config.path);
-    let files = [];
-    try {
-        files = fs.readdirSync(dirPath).filter(f => f.endsWith('.webp'));
-    } catch (e) {
-        console.error('Error reading icons:', e);
-        return res.status(500).json({ error: 'Server resource error' });
-    }
-    const noPrizeFiles = files.filter(f => f.includes('No Prize'));
+    // HARDCODED FILE LIST (To fix Railway 500 Error)
+    // Since file reading is fragile on serverless/containers if structure varies.
+    const ALL_FILES = [
+        'First Prize.webp', 'Second Prize.webp', 'Third Prize.webp', 'Fourth Prize.webp', 'Fifth Prize.webp',
+        'Grand Prize.webp',
+        'No Prize.webp', 'No Prize (2).webp', 'No Prize (3).webp', 'No Prize (4).webp', 'No Prize (5).webp',
+        'No Prize (6).webp', 'No Prize (7).webp', 'No Prize (8).webp', 'No Prize (9).webp', 'No Prize (10).webp',
+        'No Prize (11).webp', 'No Prize (12).webp', 'No Prize (13).webp', 'No Prize (14).webp', 'No Prize (15).webp',
+        'No Prize (16).webp', 'No Prize (17).webp', 'No Prize (18).webp', 'No Prize (19).webp', 'No Prize (20).webp',
+        'No Prize (21).webp', 'No Prize (22).webp'
+    ];
+
+    const noPrizeFiles = ALL_FILES.filter(f => f.includes('No Prize'));
 
     // Randomize positions for winning icons
     const positions = Array.from({length: 16}, (_, i) => i);
