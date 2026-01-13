@@ -253,19 +253,29 @@ app.post('/api/play', (req, res) => {
     if (user.consecutiveLosses > 10) user.consecutiveLosses = 10; 
 
     // 3. Fill Grid
-    // HARDCODED FILE LIST (To fix Railway 500 Error)
-    // Since file reading is fragile on serverless/containers if structure varies.
-    const ALL_FILES = [
-        'First Prize.webp', 'Second Prize.webp', 'Third Prize.webp', 'Fourth Prize.webp', 'Fifth Prize.webp',
-        'Grand Prize.webp',
-        'No Prize.webp', 'No Prize (2).webp', 'No Prize (3).webp', 'No Prize (4).webp', 'No Prize (5).webp',
-        'No Prize (6).webp', 'No Prize (7).webp', 'No Prize (8).webp', 'No Prize (9).webp', 'No Prize (10).webp',
-        'No Prize (11).webp', 'No Prize (12).webp', 'No Prize (13).webp', 'No Prize (14).webp', 'No Prize (15).webp',
-        'No Prize (16).webp', 'No Prize (17).webp', 'No Prize (18).webp', 'No Prize (19).webp', 'No Prize (20).webp',
+    // Hardcoded file list to avoid file system dependency on Railway
+    // This solves the 500 error permanently
+    const colorfulNoPrizeFiles = [
+        'No Prize.webp', 'No Prize (2).webp', 'No Prize (3).webp', 'No Prize (4).webp', 
+        'No Prize (5).webp', 'No Prize (6).webp', 'No Prize (7).webp', 'No Prize (8).webp', 
+        'No Prize (9).webp', 'No Prize (10).webp', 'No Prize (11).webp', 'No Prize (12).webp', 
+        'No Prize (13).webp', 'No Prize (14).webp', 'No Prize (15).webp', 'No Prize (16).webp', 
+        'No Prize (17).webp', 'No Prize (18).webp', 'No Prize (19).webp', 'No Prize (20).webp', 
+        'No Prize (21).webp', 'No Prize (22).webp'
+    ];
+    
+    const goldenNoPrizeFiles = [
+        'No Prize.webp', 'No Prize (2).webp', 'No Prize (3).webp', 'No Prize (4).webp', 
+        'No Prize (5).webp', 'No Prize (6).webp', 'No Prize (7).webp', 'No Prize (8).webp', 
+        'No Prize (9).webp', 'No Prize (10).webp', 'No Prize (11).webp', 'No Prize (12).webp', 
+        'No Prize (13).webp', 'No Prize (14).webp', 'No Prize (15).webp', 'No Prize (16).webp', 
+        'No Prize (17).webp', 'No Prize (18).webp', 'No Prize (19).webp', 'No Prize (20).webp', 
         'No Prize (21).webp', 'No Prize (22).webp'
     ];
 
-    const noPrizeFiles = ALL_FILES.filter(f => f.includes('No Prize'));
+    const noPrizeFiles = (type === 'golden') ? goldenNoPrizeFiles : colorfulNoPrizeFiles;
+
+    // Randomize positions for winning icons
 
     // Randomize positions for winning icons
     const positions = Array.from({length: 16}, (_, i) => i);
