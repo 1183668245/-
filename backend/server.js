@@ -52,7 +52,11 @@ const PRIZE_CONFIG = {
 };
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: ['https://guajindou.xyz', 'http://localhost:3000', 'http://127.0.0.1:3000'],
+    methods: ['GET', 'POST'],
+    credentials: true
+}));
 app.use(express.json());
 
 // Security Middleware: Block access to backend files and hidden files
