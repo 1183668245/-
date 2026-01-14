@@ -272,7 +272,7 @@ app.post('/api/play', (req, res) => {
 
     const noPrizeFiles = (type === 'golden') ? goldenNoPrizeFiles : colorfulNoPrizeFiles;
 
-
+    // Randomize positions for winning icons
     const positions = Array.from({length: 16}, (_, i) => i);
     // Shuffle positions
     for (let i = positions.length - 1; i > 0; i--) {
