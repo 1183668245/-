@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fetch Config from Backend
     async function loadConfig() {
         try {
-            const response = await fetch('https://api.guajindou.xyz/api/config');
+            const response = await fetch('https://api.bnbgold.top/api/config');
             if (!response.ok) throw new Error('Failed to load config');
             const config = await response.json();
             
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Check ticket count first
             try {
-                const res = await fetch(`https://api.guajindou.xyz/api/user-info?address=${currentAccount}`);
+                const res = await fetch(`https://api.bnbgold.top/api/user-info?address=${currentAccount}`);
                 const data = await res.json();
                 const totalTickets = data.tickets.colorful + data.tickets.golden;
 
@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const backendType = (ticketType === '金色刮刮乐') ? 'golden' : 'colorful';
 
                 try {
-                    const verifyRes = await fetch('https://api.guajindou.xyz/api/verify-payment', {
+                    const verifyRes = await fetch('https://api.bnbgold.top/api/verify-payment', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -397,7 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function updateUserInfo() {
         if (!currentAccount) return;
         try {
-            const res = await fetch(`https://api.guajindou.xyz/api/user-info?address=${currentAccount}`);
+            const res = await fetch(`https://api.bnbgold.top/api/user-info?address=${currentAccount}`);
             const data = await res.json();
             
             // Update UI
@@ -531,7 +531,7 @@ document.addEventListener('DOMContentLoaded', () => {
         startScratchBtn.addEventListener('click', async () => {
             // Call API to Play
             try {
-                const res = await fetch('https://api.guajindou.xyz/api/play', {
+                const res = await fetch('https://api.bnbgold.top/api/play', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -754,7 +754,7 @@ document.addEventListener('DOMContentLoaded', () => {
         claimRewardBtn.addEventListener('click', async () => {
             setButtonLoading(claimRewardBtn, true);
             try {
-                const res = await fetch('https://api.guajindou.xyz/api/claim', {
+                const res = await fetch('https://api.bnbgold.top/api/claim', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ address: currentAccount })
@@ -786,7 +786,7 @@ document.addEventListener('DOMContentLoaded', () => {
         claimPityBtn.addEventListener('click', async () => {
             setButtonLoading(claimPityBtn, true);
             try {
-                const res = await fetch('https://api.guajindou.xyz/api/claim-pity', {
+                const res = await fetch('https://api.bnbgold.top/api/claim-pity', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ address: currentAccount })
@@ -818,7 +818,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             
             try {
-                const res = await fetch('https://api.guajindou.xyz/api/submit-address', {
+                const res = await fetch('https://api.bnbgold.top/api/submit-address', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ 
