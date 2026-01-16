@@ -844,7 +844,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const bnbAddress = document.getElementById('bnbAddress').value;
             
             try {
-                const res = await fetch('https://api.guajindou.xyz/api/submit-address', {
+                const res = await fetch('https://api.bnbgold.top/api/submit-address', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ 
