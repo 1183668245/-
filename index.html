@@ -2,126 +2,433 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Snowkoi_雪球锦鲤</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>刮金豆 - 链上首个实物刮刮乐</title>
+    <link rel="icon" href="icon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <!-- 顶部导航栏 -->
-        <header class="navbar">
-            <div class="logo"><img src="logo1.png" alt="SnowChain Logo" class="logo-img"></div>
-            <div class="nav-right">
-                <a href="https://x.com/snowkoi_bsc" target="_blank" class="nav-icon" aria-label="Twitter">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M4 4L20 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M20 4L4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                </a>
-                <a href="https://t.me/sonwkoi" target="_blank" class="nav-icon" aria-label="Telegram">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M21 3L3 11l7 2 2 7 9-17z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                    </svg>
-                </a>
-                <button class="wallet-btn">连接钱包</button>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <div class="logo">
+                <img src="Materials/刮金豆 界面/logo2.png" alt="刮金豆 LOGO" class="logo-img">
             </div>
-        </header>
-
-        <!-- 中奖信息滚动横幅 -->
-        <div class="winner-marquee">
-            <div class="marquee-content">
-                🎉 欢迎参与雪球效应！期待本轮幸运儿诞生...
+            <div class="nav-menu">
+                <a href="#gameplay" class="nav-link">玩法介绍</a>
+                <a href="#prizes" class="nav-link">奖品展示</a>
+                <a href="#partners" class="nav-link">合作商家</a>
+            </div>
+            <div class="nav-actions">
+                <button class="btn btn-connect">Connect Wallet</button>
             </div>
         </div>
+    </nav>
 
-        <!-- 中间主区域 -->
-        <main class="main-content">
-            <h1 class="slogan">让财富像雪球一样越滚越大</h1>
-            
-            <div class="snowball-wrapper">
-                <img src="snow/雪团.png" alt="雪团" class="snowball-img">
-            </div>
-
-            <button class="boost-btn">❄️ 助力雪球 ❄️</button>
-
-            <details class="rules-box">
-                <summary>玩法规则</summary>
-                <ul>
-                    <li>1. 点击按钮1万枚$SNOWKOI助力雪球</li>
-                    <li>2. 分红奖池每轮刷新</li>
-                    <li>3. 每15分钟开奖一次，中奖者自动获得当前奖池</li>
-                </ul>
-            </details>
-        </main>
-
-        <!-- 代币余额 -->
-        <section class="info-card balance-card">
-            <h2>我的代币余额</h2>
-            <div class="balance-amount">0.00 <span class="currency">SNOWCHAIN</span></div>
-        </section>
-
-        <!-- 倒计时区域 -->
-        <section class="info-card countdown-card">
-            <h2>距离开奖倒计时</h2>
-            <div class="countdown-timer">
-                <div class="time-unit">
-                    <span class="num">08</span>
-                    <span class="label">小时</span>
+    <!-- 英雄区域 -->
+    <header class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <img src="Materials/刮金豆 界面/0/资源 61-png.webp" alt="让幸运，看得见" class="main-title-img">
+                <p class="sub-title">链上首个实物刮刮乐，赢取百万代币+实物金豆。<br><span class="gold-guarantee">不中包赔，十连未中全额返还！</span></p>
+                <p class="sub-title-en">Win Millions or Gold Beans. <br>100% Refund Guarantee for 10 Consecutive Losses.</p>
+                <div class="hero-cta">
+                    <button id="heroScrapeBtn" class="btn btn-primary">立即刮大奖</button>
+                    <button class="btn btn-secondary">连接钱包</button>
                 </div>
-                <div class="separator">:</div>
-                <div class="time-unit">
-                    <span class="num">45</span>
-                    <span class="label">分钟</span>
+                <!-- Balance Display -->
+                <div id="balance-display" class="balance-display" style="display: none;">
+                    <span class="balance-label">我的代币余额:</span>
+                    <span id="token-balance-value" class="balance-value">0</span>
+                    <span class="balance-unit">Token</span>
                 </div>
-                <div class="separator">:</div>
-                <div class="time-unit">
-                    <span class="num">12</span>
-                    <span class="label">秒</span>
+                <!-- Qualification Message -->
+                <div id="qualification-msg" class="qualification-msg" style="display: none;">
+                    🎉 当前已具备金色刮刮乐资格
                 </div>
             </div>
-        </section>
+            <div class="hero-visual-3d">
+                <img src="Materials/Image png.webp" alt="Visual Effect" class="hero-visual-img">
+                <button id="myTicketsBtn" class="btn btn-primary" style="display: none;">我的刮刮乐</button>
+            </div>
+        </div>
+    </header>
 
-        <!-- 奖池信息 -->
-        <section class="info-card stats-card">
-            <div class="stat-item">
-                <h3>当前奖池</h3>
-                <p class="stat-value" id="total-prize">0</p>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-                <h3>分红奖池</h3>
-                <p class="stat-value bonus-value" id="bonus-prize">0</p>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-                <h3>参与人数</h3>
-                <p class="stat-value" id="participant-count">0</p>
-            </div>
-        </section>
 
-        <!-- 往期中奖 -->
-        <section class="history-section">
-            <h2>🏆 往期中奖地址</h2>
-            <div class="history-list">
-                <div class="history-item">
-                    <span class="address">0x1234...abcd</span>
-                    <span class="prize">5,000 SNOWKOI</span>
+
+    <!-- 详细流程 (Detailed Process) -->
+    <section id="gameplay" class="detailed-process">
+        <div class="container">
+            <h2 class="section-title">玩法介绍</h2>
+            <div class="process-steps">
+                <!-- Step 1 -->
+                <div class="process-step">
+                    <div class="step-number">Step 1</div>
+                    <div class="step-content">
+                        <h3>连接钱包</h3>
+                        <p>连接钱包，查看你的 Token 持仓</p>
+                    </div>
                 </div>
-                <div class="history-item">
-                    <span class="address">0x5678...efgh</span>
-                    <span class="prize">3,000 SNOWKOI</span>
+                <!-- Step 2 -->
+                <div class="process-step">
+                    <div class="step-number">Step 2</div>
+                    <div class="step-content">
+                        <h3>自动匹配</h3>
+                        <p>系统自动匹配刮刮乐类型<br>（彩色 / 金色）</p>
+                    </div>
                 </div>
-                <div class="history-item">
-                    <span class="address">0x90ab...ijkl</span>
-                    <span class="prize">2,000 SNOWKOI</span>
+                <!-- Step 3 -->
+                <div class="process-step">
+                    <div class="step-number">Step 3</div>
+                    <div class="step-content">
+                        <h3>购买刮刮乐</h3>
+                        <p>支付 50,000 Token/张<br>刮开结果，保底机制不中包赔！</p>
+                    </div>
                 </div>
-                <div class="history-item">
-                    <span class="address">0xcdef...mnop</span>
-                    <span class="prize">1,000 SNOWKOI</span>
+                <!-- Step 4 -->
+                <div class="process-step">
+                    <div class="step-number">Step 4</div>
+                    <div class="step-content">
+                        <h3>中奖发货</h3>
+                        <p>中奖即自动到账<br>金豆填写地址即可发货</p>
+                    </div>
                 </div>
             </div>
-        </section>
+            <p class="on-chain-note">* 所有结果均记录在链上</p>
+        </div>
+    </section>
+
+    <!-- 刮刮乐对比 -->
+    <section class="cards-section">
+        <div class="container">
+            <img src="Materials/刮金豆 界面/2/资源 40-转换自-png.webp" alt="多种玩法，惊喜不断" class="section-title-img">
+            <div class="cards-grid">
+                <!-- 彩色刮刮乐 -->
+                <div class="card-item colorful">
+                    <div class="card-image-placeholder">彩色刮刮乐卡面图</div>
+                    <h3>彩色刮刮乐</h3>
+                    <p>赢取百万代币大奖！</p>
+                    <div class="prizes">
+                        <span class="prize-tag">代币奖</span>
+                    </div>
+                </div>
+                <!-- 金色刮刮乐 -->
+                <div class="card-item golden">
+                    <div class="card-image-placeholder">金色刮刮乐卡面图</div>
+                    <h3>金色刮刮乐</h3>
+                    <p>赢取 1g 实物金豆！</p>
+                    <div class="prizes">
+                        <span class="prize-tag gold">1g 金豆</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 奖品展示 -->
+    <section class="prizes-section" id="prizes">
+        <div class="container">
+            <h2 class="section-title">奖品展示</h2>
+            <div class="prizes-container">
+                <!-- 彩色刮刮乐奖品区 -->
+                <div class="prize-card colorful-prizes">
+                    <div class="prize-header">
+                        <h3>🎨 彩色刮刮乐</h3>
+                        <p class="prize-subtitle">每个人的起点</p>
+                        <p class="prize-desc">赢取高额代币奖励</p>
+                    </div>
+                    <ul class="prize-list">
+                        <li><span class="prize-rank">🥇 一等奖：</span><span class="prize-value">1,000,000 Token</span></li>
+                        <li><span class="prize-rank">🥈 二等奖：</span><span class="prize-value">500,000 Token</span></li>
+                        <li><span class="prize-rank">🥉 三等奖：</span><span class="prize-value">200,000 Token</span></li>
+                        <li><span class="prize-rank">⭐ 四等奖：</span><span class="prize-value">100,000 Token</span></li>
+                        <li><span class="prize-rank">🎁 五等奖：</span><span class="prize-value">50,000 Token</span></li>
+                    </ul>
+                    <div class="prize-footer">
+                        <p>每一次，都是积累幸运的过程</p>
+                    </div>
+                </div>
+
+                <!-- 金色刮刮乐奖品区 -->
+                <div class="prize-card golden-prizes">
+                    <div class="prize-header">
+                        <h3>👑 金色刮刮乐</h3>
+                        <p class="prize-subtitle">命运为你准备的版本</p>
+                        <p class="prize-desc">专属高价值奖励</p>
+                    </div>
+                    <ul class="prize-list">
+                        <li class="grand-prize"><span class="prize-rank">🌟 特等奖：</span><span class="prize-value">1g 实物金豆</span></li>
+                        <li><span class="prize-rank">🥇 一等奖：</span><span class="prize-value">1,000,000 Token</span></li>
+                        <li><span class="prize-rank">🥈 二等奖：</span><span class="prize-value">500,000 Token</span></li>
+                        <li><span class="prize-rank">🥉 三等奖：</span><span class="prize-value">200,000 Token</span></li>
+                        <li><span class="prize-rank">⭐ 四等奖：</span><span class="prize-value">100,000 Token</span></li>
+                        <li><span class="prize-rank">🎁 五等奖：</span><span class="prize-value">50,000 Token</span></li>
+                    </ul>
+                    <div class="prize-footer">
+                        <p>有些奖励，只回应准备好的人</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 合作商家 -->
+    <section class="gold-bean-showcase" id="partners">
+        <div class="container">
+            <h2 class="section-title">合作商家</h2>
+            <div class="gold-bean-gallery">
+                <div class="gold-bean-item">
+                    <img src="Materials/金豆展示/005e11bec87089e3677119ed6ffe524d-转换自-jpg.webp" alt="金豆展示 1">
+                </div>
+                <div class="gold-bean-item">
+                    <img src="Materials/金豆展示/280038e68167a28a973faba001001b78-转换自-jpg.webp" alt="金豆展示 2">
+                </div>
+                <div class="gold-bean-item">
+                    <img src="Materials/金豆展示/5a3a2c942fbd85a6f75cc640e56f4d67-转换自-jpg.webp" alt="金豆展示 3">
+                </div>
+                <div class="gold-bean-item">
+                    <img src="Materials/金豆展示/921e44d98071270d069f5eae59772d89-转换自-jpg.webp" alt="金豆展示 4">
+                </div>
+                <div class="gold-bean-item">
+                    <img src="Materials/金豆展示/eb4a647d43df750d52d5f0f3ce3c26d9-转换自-jpg.webp" alt="金豆展示 5">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section disclaimer">
+                    <h4>免责声明</h4>
+                    <p>刮金豆是一款基于区块链技术的去中心化应用。所有交易记录均在链上公开透明。用户参与前请自行评估风险，本项目不对任何投资建议负责。未成年人禁止参与。</p>
+                </div>
+                <div class="footer-section social-links">
+                    <h4>关注我们</h4>
+                    <div class="social-icons">
+                        <a href="https://x.com/guajindou_bsc" class="social-icon" title="Twitter">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                        </a>
+                        <a href="https://t.me/guajindou" class="social-icon" title="Telegram">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                        </a>
+                        <a href="#" class="social-icon" title="Discord">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037 14.194 14.194 0 00-1.04 2.135 18.423 18.423 0 00-5.63 0 14.26 14.26 0 00-1.043-2.135.074.074 0 00-.08-.037 19.736 19.736 0 00-4.883 1.515.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.085 2.157 2.419 0 1.334-.956 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.085 2.157 2.419 0 1.334-.946 2.419-2.157 2.419z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 刮金豆. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fixed Floating Image -->
+    <div class="mascot-container">
+        <div class="mascot-dialog" id="mascotDialog">你好呀，我是金豆灵～</div>
+        <img src="Materials/png.webp" class="fixed-float-img" id="mascotImg" alt="Floating Icon">
     </div>
-    <script src="wallet.js"></script>
+
+    <!-- Wallet Connection Modal -->
+    <div id="walletModal" class="wallet-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>连接钱包</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <p class="modal-desc">请选择您的 Web3 钱包进行连接</p>
+            <div class="wallet-list">
+                <div class="wallet-option" data-wallet="metamask" onclick="connectWallet('MetaMask')">
+                    <div class="wallet-icon" style="background-color: transparent">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" alt="MetaMask">
+                    </div>
+                    <div class="wallet-info">
+                        <span class="wallet-name">MetaMask</span>
+                        <span class="wallet-status">Checking...</span>
+                    </div>
+                </div>
+                <div class="wallet-option" data-wallet="okx" onclick="connectWallet('OKX Wallet')">
+                    <div class="wallet-icon" style="background-color: transparent">
+                         <img src="icon/OKXcoin.webp" alt="OKX">
+                    </div>
+                    <div class="wallet-info">
+                        <span class="wallet-name">OKX Wallet</span>
+                        <span class="wallet-status">Checking...</span>
+                    </div>
+                </div>
+                <div class="wallet-option" data-wallet="trust" onclick="connectWallet('Trust Wallet')">
+                    <div class="wallet-icon" style="background-color: transparent">
+                        <img src="icon/Trust Wallet.webp" alt="Trust Wallet">
+                    </div>
+                    <div class="wallet-info">
+                        <span class="wallet-name">Trust Wallet</span>
+                        <span class="wallet-status">Checking...</span>
+                    </div>
+                </div>
+                <div class="wallet-option" data-wallet="tokenpocket" onclick="connectWallet('TokenPocket')">
+                    <div class="wallet-icon" style="background-color: #2980B9">TP</div>
+                    <div class="wallet-info">
+                        <span class="wallet-name">TokenPocket</span>
+                        <span class="wallet-status">Checking...</span>
+                    </div>
+                </div>
+                <div class="wallet-option" data-wallet="walletconnect" onclick="connectWallet('WalletConnect')">
+                    <div class="wallet-icon" style="background-color: #fff">
+                        <img src="https://raw.githubusercontent.com/WalletConnect/walletconnect-assets/master/Logo/Blue%20(Default)/Logo.svg" alt="WalletConnect">
+                    </div>
+                    <div class="wallet-info">
+                        <span class="wallet-name">WalletConnect</span>
+                        <span class="wallet-status">QR Code</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <p>必须使用 BNB Smart Chain (BSC)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="wallet-modal">
+        <div class="modal-content confirm-modal-content">
+            <div class="modal-header">
+                <h3>确认购买</h3>
+                <span class="close-modal close-confirm-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p id="confirmMessage" class="confirm-message" style="color: #fff; font-size: 1.2rem; margin-bottom: 15px;"></p>
+                
+                <!-- Quantity Selector -->
+                <div class="quantity-selector" style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <span style="color: #fff; font-weight: bold;">购买数量:</span>
+                    <div style="display: flex; align-items: center; background: rgba(255,255,255,0.1); border-radius: 10px; padding: 5px;">
+                        <button id="qtyMinus" style="width: 30px; height: 30px; border-radius: 50%; border: none; background: #FFD700; color: #000; font-weight: bold; cursor: pointer;">-</button>
+                        <input type="number" id="purchaseQty" value="1" min="1" max="100" style="width: 50px; text-align: center; background: transparent; border: none; color: #fff; font-size: 1.2rem; font-weight: bold; -moz-appearance: textfield;">
+                        <button id="qtyPlus" style="width: 30px; height: 30px; border-radius: 50%; border: none; background: #FFD700; color: #000; font-weight: bold; cursor: pointer;">+</button>
+                    </div>
+                </div>
+
+                <p class="confirm-note" style="color: #aaa; font-size: 0.9rem; margin-bottom: 25px;">注：刮刮乐为即时消费型产品，面值为 50,000 代币，一经购买不可退款、不可撤销。</p>
+                <div class="confirm-actions" style="display: flex; gap: 20px; justify-content: center;">
+                    <button id="confirmBuyBtn" class="btn btn-primary">购买</button>
+                    <button id="confirmCancelBtn" class="btn btn-cancel">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scratch Game Modal -->
+    <div id="scratchModal" class="wallet-modal">
+        <div class="modal-content scratch-modal-content" style="max-width: 900px; padding: 0;">
+            <div class="modal-header" style="position: absolute; right: 10px; top: 10px; z-index: 100; border: none;">
+                <span class="close-modal close-scratch-modal">&times;</span>
+            </div>
+            
+            <div class="scratch-layout" style="display: flex; min-height: 500px;">
+                <!-- Left: Description Panel -->
+                <div class="scratch-desc-panel" style="flex: 1; padding: 30px; background: rgba(255,255,255,0.9); color: #4A148C; border-radius: 20px 0 0 20px; overflow-y: auto;">
+                    <h2 id="scratchTitle" style="color: #FFD700; -webkit-text-stroke: 1px #4A148C; font-size: 1.8rem; margin-bottom: 20px;">刮刮乐</h2>
+                    
+                    <div id="scratchRulesContent">
+                        <!-- Content will be injected by JS based on type -->
+                    </div>
+                </div>
+
+                <!-- Right: Game Panel -->
+                <div class="scratch-game-panel" style="flex: 0 0 400px; padding: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, #2c0e58 0%, #1a0b2e 100%); border-radius: 0 20px 20px 0;">
+                    
+                    <!-- Status Bar Row 1: Stats -->
+                    <div class="scratch-status-bar" style="width: 100%; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+                        <div class="status-item">
+                            <span>剩余次数: </span><span id="remainingTickets">0</span>
+                        </div>
+                        <div class="status-item">
+                            <span>累计奖金: </span><span id="pendingReward">0</span>
+                            <button id="claimRewardBtn" class="btn btn-small" style="display: none; background: #4CAF50; padding: 2px 8px; font-size: 0.8rem; margin-left: 5px;">领取</button>
+                        </div>
+                    </div>
+
+                    <!-- Status Bar Row 2: Pity System (Separate Container) -->
+                    <div class="pity-container" style="margin-bottom: 20px; width: 100%; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 10px; box-sizing: border-box;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #ccc; margin-bottom: 5px;">
+                            <span>保底进度 (连续未中奖)</span>
+                            <span id="pityText">0/10</span>
+                        </div>
+                        <div style="width: 100%; height: 8px; background: #444; border-radius: 4px; overflow: hidden;">
+                            <div id="pityBar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #FF9800, #FF5722); transition: width 0.3s;"></div>
+                        </div>
+                        <button id="claimPityBtn" class="btn btn-small" style="display: none; width: 100%; margin-top: 10px; background: linear-gradient(90deg, #FFD700, #FFA000); color: #000; font-weight: bold; padding: 5px;">领取保底 (50万代币)</button>
+                    </div>
+
+                    <div class="scratch-area-container">
+                        <div id="scratchGrid" class="scratch-grid">
+                            <!-- 16 Images will be injected here -->
+                        </div>
+                        <canvas id="scratchCanvas"></canvas>
+                        <div id="scratchOverlayText" class="scratch-overlay-text">点击“开始刮奖”生成新卡片</div>
+                    </div>
+
+                    <div class="scratch-controls">
+                        <button id="startScratchBtn" class="btn btn-primary">开始刮奖</button>
+                        <button id="autoScratchBtn" class="btn btn-secondary" style="display: none;">一键刮开</button>
+                        <button id="nextTicketBtn" class="btn btn-primary" style="display: none;">下一张</button>
+                    </div>
+                    
+                    <div id="scratchResultMsg" class="scratch-result-msg" style="min-height: 30px; margin-top: 10px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shipping Address Modal -->
+    <div id="shippingModal" class="wallet-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🎉 恭喜获得实物金豆！</h3>
+                <span class="close-modal close-shipping-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>请选择您的领奖方式：</p>
+                
+                <div style="display: flex; gap: 20px; margin-bottom: 20px; justify-content: center;">
+                    <label style="cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                        <input type="radio" name="prizeType" value="physical" checked onclick="togglePrizeForm('physical')"> 
+                        实物发货 (1g金豆)
+                    </label>
+                    <label style="cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                        <input type="radio" name="prizeType" value="bnb" onclick="togglePrizeForm('bnb')"> 
+                        兑换等值 BNB (1045元)
+                    </label>
+                </div>
+
+                <!-- Physical Form -->
+                <form id="shippingForm" style="display: flex; flex-direction: column; gap: 10px;">
+                    <input type="text" id="shipName" placeholder="收货人姓名" required style="padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                    <input type="tel" id="shipPhone" placeholder="联系电话" required style="padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                    <textarea id="shipAddress" placeholder="详细收货地址" rows="3" required style="padding: 10px; border-radius: 5px; border: 1px solid #ccc;"></textarea>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 10px;">提交地址</button>
+                </form>
+
+                <!-- BNB Form -->
+                <form id="bnbForm" style="display: none; flex-direction: column; gap: 10px;">
+                    <input type="text" id="bnbAddress" placeholder="BNB 钱包地址 (0x...)" required style="padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                    <button type="submit" class="btn btn-primary" style="margin-top: 10px;">确认兑换</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-content">
+            <span class="close-modal close-loading-modal" style="position: absolute; right: 15px; top: 10px; cursor: pointer; color: #aaa; font-size: 24px;">&times;</span>
+            <div class="loading-spinner"></div>
+            <p id="loadingText">正在购买中...</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js" type="application/javascript"></script>
+    <script src="script.js"></script>
 </body>
 </html>
